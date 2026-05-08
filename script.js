@@ -4,10 +4,12 @@ document.getElementById('contactForm').addEventListener('submit', async function
     const form = event.target;
     const formData = new FormData(form);
 
-    if (formData.get('access_key') === 'e6d360cf-bccd-4730-abc1-77bc7b5fe777') {
-        alert('Add your Web3Forms access key to enable submissions.');
-        return;
-    }
+        const accessKey = formData.get('access_key');
+
+        if (!accessKey) {
+            alert('Add your Web3Forms access key to enable submissions.');
+            return;
+        }
 
     try {
         const response = await fetch(form.action, {
